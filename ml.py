@@ -52,6 +52,7 @@ def test(model, test_loader):
 
 
 if __name__ == "__main__":
+    # Machine learning
 
     train(model, train_loader, optimizer, criterion, num_epochs=10)
 

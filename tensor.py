@@ -27,7 +27,7 @@ print("First backward, dy/dx:", x.grad)
 
 
 # 清零梯度
-# x.grad.zero_()
+x.grad.zero_()
 y.backward()
 print("After zeroing, dy/dx:", x.grad)
 
