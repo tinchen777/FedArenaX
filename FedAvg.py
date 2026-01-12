@@ -38,6 +38,7 @@ def train(model, data_loader, optimizer, criterion, num_epochs=1):
             optimizer.step()
 
 
+
 def test(model, test_loader):
     model.eval()  # 切换到评估模式
     correct = 0
