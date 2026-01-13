@@ -7,6 +7,7 @@ train_loaders_non_iid = {}
 train_loader = None
 test_loader = None
 
+# FIXME
 def get_train_loaders_iid(client_num):
     global train_loaders_iid
     if client_num not in train_loaders_iid:

@@ -29,6 +29,7 @@ time_past = time.time()
 # 下载训练数据和测试数据
 full_dataset = torchvision.datasets.CIFAR10(root="/data/tianzhen/DATASETS/cifar10/raw_data", 
                                         train=True, download=False, transform=transform_3)
+# FIXME
 # testset = torchvision.datasets.CIFAR10(root="/data/tianzhen/DATASETS/cifar10/raw_data", 
 #                                        train=False, download=False, transform=transform_3)
 # trainset = Subset(trainset, list(range(10000)))
