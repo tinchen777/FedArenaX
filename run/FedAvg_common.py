@@ -1,3 +1,4 @@
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -9,7 +10,8 @@ from torch.optim.lr_scheduler import CosineAnnealingLR
 
 from src.fedarenax import get_resnet18, get_test_loader, federated_averaging
 from src.fedarenax import get_train_loaders_iid, get_train_loaders_non_iid, SupConLoss
-from supcon import train, test
+from src.supcon import train, test
+
 
 def set_seed(seed=2026, deterministic=True, benchmark=False):
     torch.manual_seed(seed)
@@ -17,6 +19,7 @@ def set_seed(seed=2026, deterministic=True, benchmark=False):
     random.seed(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
+
 
 def main(device, train_loaders, test_loader, client_num, active_num, rounds, epochs, learning_rate_start, learning_rate_end, other_txt, seed):
     set_seed(seed)
@@ -64,6 +67,7 @@ def main(device, train_loaders, test_loader, client_num, active_num, rounds, epo
     # test_more(global_model, test_loader)
     with open(f"log_fed_common_{other_txt}_clientnum{active_num}/{client_num}_rounds{rounds}_epochs{epochs}_lr{learning_rate_start}:{learning_rate_end}.txt", "a") as f:
         f.write(log_str)
+
 
 if __name__ == "__main__":
     # args -- dim = 128

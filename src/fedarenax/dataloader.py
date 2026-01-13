@@ -1,20 +1,17 @@
-from .data import trainset, testset, split_non_iid_data, split_iid_data
-from torch.utils.data import DataLoader
 
-# 数据加载器（批量读取）
-train_loaders_iid = {}
-train_loaders_non_iid = {}
-train_loader = None
-test_loader = None
+from torch.utils.data import DataLoader
+from typing import List
+
+from .client_utils import Client
+from .data import (trainset, testset, split_non_iid_data, split_iid_data)
+
+
+def get_train_loaders_iid(clients: List[Client]):
+    for client, subset in zip(clients, split_iid_data(trainset, len(clients))):
+        client.train_loader_recv(DataLoader(subset, batch_size=64, shuffle=True, num_workers=4))
+
 
 # FIXME
-def get_train_loaders_iid(client_num):
-    global train_loaders_iid
-    if client_num not in train_loaders_iid:
-        train_loaders_iid_single = [DataLoader(trainset_single, batch_size=64, shuffle=True, num_workers=4) for trainset_single in split_iid_data(trainset, client_num)]
-        train_loaders_iid[client_num] = train_loaders_iid_single
-    return train_loaders_iid[client_num]
-
 def get_train_loaders_non_iid(client_num, alpha):
     global train_loaders_non_iid
     if client_num not in train_loaders_non_iid:
